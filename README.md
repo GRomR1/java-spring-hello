@@ -1,5 +1,6 @@
 # java-spring-hello
-An example of Java project with Spring Boot.
+An example of Java project with Spring Boot. Included:
+- [actuator module](https://docs.spring.io/spring-boot/docs/2.5.0/reference/htmlsingle/#actuator)
 
 # Requirements
 - java 18 and later
@@ -34,6 +35,20 @@ Now run the service with curl, by running the following command (shown with its 
 ```
 $ curl localhost:8080
 Hello world!%
+```
+
+Show metrics in Prometheus format:
+```
+$ curl localhost:8080/actuator/prometheus
+# HELP jvm_memory_used_bytes The amount of used memory
+# TYPE jvm_memory_used_bytes gauge
+jvm_memory_used_bytes{application="java-spring-hello",area="nonheap",id="Metaspace",} 3.9847672E7
+jvm_memory_used_bytes{application="java-spring-hello",area="nonheap",id="CodeCache",} 7019776.0
+jvm_memory_used_bytes{application="java-spring-hello",area="heap",id="G1 Old Gen",} 1.1802624E7
+jvm_memory_used_bytes{application="java-spring-hello",area="heap",id="G1 Survivor Space",} 3673368.0
+jvm_memory_used_bytes{application="java-spring-hello",area="nonheap",id="Compressed Class Space",} 5112272.0
+jvm_memory_used_bytes{application="java-spring-hello",area="heap",id="G1 Eden Space",} 1.048576E7
+...
 ```
 
 ## Docker
